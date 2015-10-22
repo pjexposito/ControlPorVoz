@@ -1,0 +1,26 @@
+{
+    "appKeys": {
+        "KEY_CADENA_ENVIADA": 0,
+        "KEY_DATO_RECIBIDO": 1
+    },
+    "capabilities": [
+        ""
+    ],
+    "companyName": "Pedro",
+    "longName": "Control por voz",
+    "projectType": "native",
+    "resources": {
+        "media": []
+    },
+    "sdkVersion": "3",
+    "shortName": "Control por voz",
+    "targetPlatforms": [
+        "basalt",
+        "chalk"
+    ],
+    "uuid": "7fa4a7e2-ace0-47db-b58c-540645ca1185",
+    "versionLabel": "1.0",
+    "watchapp": {
+        "watchface": false
+    }
+}
