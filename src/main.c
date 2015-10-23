@@ -36,6 +36,12 @@ static void dictation_session_callback(DictationSession *session, DictationSessi
 
 /************************************ App *************************************/
 
+static void inicia_dictado(){
+    dictation_session_start(s_dictation_session);
+
+
+}
+
 static void select_click_handler(ClickRecognizerRef recognizer, void *context) {
   // Start voice dictation UI
   dictation_session_start(s_dictation_session);
@@ -46,13 +52,22 @@ static void click_config_provider(void *context) {
 }
 
 static void window_load(Window *window) {
+        APP_LOG(APP_LOG_LEVEL_DEBUG, "Windows Load");
+
+
+
   Layer *window_layer = window_get_root_layer(window);
   GRect bounds = layer_get_bounds(window_layer);
 
   s_output_layer = text_layer_create(GRect(bounds.origin.x, (bounds.size.h - 24) / 2, bounds.size.w, bounds.size.h));
-  text_layer_set_text(s_output_layer, "Press Select to get input!");
+  text_layer_set_text(s_output_layer, "Iniciando...");
   text_layer_set_text_alignment(s_output_layer, GTextAlignmentCenter);
   layer_add_child(window_layer, text_layer_get_layer(s_output_layer));
+  // Inicia el dictado
+  app_timer_register(10, inicia_dictado, 0);
+
+
+
 }
 
 static void window_unload(Window *window) {
@@ -61,7 +76,11 @@ static void window_unload(Window *window) {
 }
 
 static void init() {
+        APP_LOG(APP_LOG_LEVEL_DEBUG, "Init");
+
+
   s_main_window = window_create();
+  // Descomentar para habilitar el click
   window_set_click_config_provider(s_main_window, click_config_provider);
   window_set_window_handlers(s_main_window, (WindowHandlers) {
     .load = window_load,
